@@ -4,3 +4,6 @@ accelerate
 datasets
 tqdm
 requests
+sentencepiece
+numpy
+openai
