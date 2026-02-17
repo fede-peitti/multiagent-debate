@@ -4,14 +4,15 @@ from agent import DebateAgent
 from debate import run_debate
 from dataset import load_gsm8k
 from evaluate import majority_vote
-from results.logger import log_result
+from logger import log_result
 
 # -----------------------------
 # Global experiment parameters
 # -----------------------------
-NUM_QUESTIONS = 10
+NUM_QUESTIONS = 100
 SYSTEM_PROMPT = "You are a careful, logical problem solver."
 SLEEP_BETWEEN_CALLS = 1.0  # rate-limit safety
+CURRENT_GRID = 0  # grid index (current exp)
 
 
 def run_single_config(config, dataset):
@@ -63,18 +64,19 @@ def run_single_config(config, dataset):
 def main():
     dataset = load_gsm8k(NUM_QUESTIONS)
 
-    for i, config in enumerate(EXPERIMENT_GRID):
-        print(
-            f"\n[{i+1}/{len(EXPERIMENT_GRID)}] "
-            f"Model={config['model_label']} | "
-            f"Agents={config['agents']} | "
-            f"Rounds={config['rounds']}"
-        )
+    config = EXPERIMENT_GRID[CURRENT_GRID]
 
-        result = run_single_config(config, dataset)
-        log_result(result)
+    print(
+        f"\n[{CURRENT_GRID+1}/{len(EXPERIMENT_GRID)}] "
+        f"Model={config['model_label']} | "
+        f"Agents={config['agents']} | "
+        f"Rounds={config['rounds']}"
+    )
 
-        print(f"→ Accuracy: {result['accuracy']:.2f}")
+    result = run_single_config(config, dataset)
+    log_result(result)
+
+    print(f"→ Accuracy: {result['accuracy']:.2f}")
 
 
 if __name__ == "__main__":

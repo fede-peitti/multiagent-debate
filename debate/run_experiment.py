@@ -4,8 +4,8 @@ from dataset import load_gsm8k
 from evaluate import majority_vote
 
 MODELS = {
-    "gemma_multilingual": "google/gemma-3-27b-it:free",
-    "gpt_oss_english": "openai/gpt-oss-20b:free",
+    "gemma_multilingual": "google/gemma-3-27b-it",
+    "gpt_oss_english": "openai/gpt-oss-20b",
 }
 
 N_AGENTS = 7
