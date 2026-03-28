@@ -7,3 +7,5 @@ requests
 sentencepiece
 numpy
 openai
+seaborn
+pandas
