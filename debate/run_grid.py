@@ -12,7 +12,7 @@ from logger import log_result
 NUM_QUESTIONS = 100
 SYSTEM_PROMPT = "You are a careful, logical problem solver."
 SLEEP_BETWEEN_CALLS = 1.0  # rate-limit safety
-CURRENT_GRID = 1  # grid index (current exp)
+CURRENT_GRID = 17  # grid index (current exp)
 
 
 def run_single_config(config, dataset):
